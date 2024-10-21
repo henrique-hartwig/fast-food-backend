@@ -8,12 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Order {
+model User {
   id        Int    @id @default(autoincrement())
-  items     Json
-  total     Float
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  name      String
+  email     String @unique
+  cpf       String @unique
+  orders    Order[]
 }
 
 model Product {
@@ -28,10 +28,20 @@ model Product {
 }
 
 model ProductCategory {
-  id          Int   @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   description String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   products    Product[]
+}
+
+model Order {
+  id        Int       @id @default(autoincrement())
+  items     Json
+  total     Float
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    Int?
+  user      User?     @relation(fields: [userId], references: [id])
 }
