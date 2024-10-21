@@ -1,6 +1,6 @@
-import prisma from './prisma/prismaClient';
-import type { IOrderRepository } from '../../application/ports/IOrderRepository';
-import { Order } from '../../domain/entities/Order';
+import prisma from '../prisma/prismaClient';
+import type { IOrderRepository } from '../../../application/ports/IOrderRepository';
+import { Order } from '../../../domain/entities/Order';
 
 export class PgOrderRepository implements IOrderRepository {
   async save(order: Order): Promise<void> {

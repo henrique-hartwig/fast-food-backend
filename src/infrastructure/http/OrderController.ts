@@ -1,5 +1,5 @@
 import { OrderService } from '../../application/services/OrderService';
-import { PgOrderRepository } from '../database/PgOrderRepository';
+import { PgOrderRepository } from '../database/repository/PgOrderRepository';
 
 const orderRepository = new PgOrderRepository();
 const orderService = new OrderService(orderRepository);
