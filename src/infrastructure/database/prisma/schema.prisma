@@ -17,12 +17,14 @@ model Order {
 }
 
 model Product {
-  id          Int   @id @default(autoincrement())
-  name        String
-  description String
-  price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              Int             @id @default(autoincrement())
+  name            String
+  description     String
+  price           Float
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  categoryId      Int
+  category        ProductCategory @relation(fields: [categoryId], references: [id])
 }
 
 model ProductCategory {
@@ -31,4 +33,5 @@ model ProductCategory {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  products    Product[]
 }

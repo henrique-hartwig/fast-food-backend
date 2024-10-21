@@ -12,7 +12,7 @@ export class ProductCategoryController {
   }
 
   async getProductCategoryById(req: any, res: any) {
-    const productCategory = await productCategoryService.getProductCategoryById(req.params.id);
+    const productCategory = await productCategoryService.getProductCategoryById(Number(req.params.id));
     if (productCategory) {
       res.json(productCategory);
     } else {

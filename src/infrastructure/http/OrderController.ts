@@ -12,7 +12,7 @@ export class OrderController {
   }
 
   async getOrderById(req: any, res: any) {
-    const order = await orderService.getOrderById(req.params.id);
+    const order = await orderService.getOrderById(Number(req.params.id));
     if (order) {
       res.json(order);
     } else {
