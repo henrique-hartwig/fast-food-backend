@@ -4,12 +4,13 @@ SOAT Tech Challenge 1 - Backend for fake Fast-Food restaurant
 
 This is the first version of the Fast-Food Backend. It is a simplified backend for a fake Fast-Food restaurant that will be a monolitic application and relational Database.
 The endpoints are for:
+
 - Create, read, update users
-- Manage login with CPF
 - Create, read, update and delete products
 - Create, read, update and delete categories
 - Create, read, update and delete cart
 - Create, read, update and delete orders
+- Manage login with CPF
 - Manage order status
 
 
@@ -25,3 +26,33 @@ The endpoints are for:
 2. Run `bun install` to install the dependencies
 3. Run `bun run dev` to start the development server
 4. You can use Postman or any other API client to test the endpoints.
+
+
+
+## Folders structure
+This project aims to use Hexagonal Architecture, so the following folders structure is 
+proposed to implement the mains parts, Ports and Adapters.
+
+src/
+├── application/
+│   ├── services/
+│   │   └── OrderService.ts         # Lógica de negócio (serviço de pedidos)
+│   └── ports/
+│       └── IOrderRepository.ts     # Interface (Porta) do repositório de pedidos
+├── domain/
+│   └── entities/
+│       └── Order.ts                # Entidade de domínio (Pedido)
+├── infrastructure/
+│   ├── database/
+│   │   ├── prisma/
+│   │   │   └── prismaClient.ts     # Cliente do Prisma para Postgres (conexão)
+│   │   └── PostgresOrderRepository.ts # Repositório Postgres (adaptador)
+│   ├── http/
+│   │   └── OrderController.ts      # Adaptador HTTP (controlador da API)
+│   └── config/
+│       └── config.ts               # Configurações do ambiente (como Postgres)
+├── main.ts                         # Ponto de entrada da aplicação
+├── server.ts                       # Inicializa o servidor HTTP
+├── routes.ts                       # Define as rotas da API
+└── utils/
+    └── errorHandler.ts 
