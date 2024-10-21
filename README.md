@@ -23,9 +23,10 @@ The endpoints are for:
 
 ## How to run
 1. Clone the repository
-2. Run `bun install` to install the dependencies
-3. Run `bun run dev` to start the development server
-4. You can use Postman or any other API client to test the endpoints.
+2. Run `docker compose up -d` to start the database and application services
+3. Run `bun run migrate` to run the migrations
+4. Run `bun run seed` to run the seed
+5. You can use Postman or any other API client to test the endpoints.
 
 
 
