@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { OrderController } from './infrastructure/http/OrderController';
 import { ProductCategoryController } from './infrastructure/http/ProductCategoryController';
 import { ProductController } from './infrastructure/http/ProductController';
+import { UserController } from './infrastructure/http/UserController';
 
 const router = Router();
 const orderController = new OrderController();
@@ -20,5 +21,9 @@ router.get('/products', productController.getAllProducts);
 router.get('/products/:id', productController.getProductById);
 router.get('/products/category/:categoryId', productController.getProductsByCategoryId);
 router.put('/products/:id', productController.updateProduct);
+
+const userController = new UserController();
+router.post('/users', userController.createUser);
+router.get('/users/:cpf', userController.getUserByCpf);
 
 export { router as routes };
