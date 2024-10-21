@@ -6,8 +6,7 @@ export class PgOrderRepository implements IOrderRepository {
   async save(order: Order): Promise<void> {
     await prisma.order.create({
       data: {
-        id: order.id,
-        items: order.items.join(','),
+        items: JSON.stringify(order.items),
         total: order.total,
       },
     });
@@ -22,6 +21,6 @@ export class PgOrderRepository implements IOrderRepository {
       return null;
     }
 
-    return new Order(orderData.id, orderData.items.split(','), orderData.total);
+    return new Order(orderData.id, JSON.parse(orderData.items), orderData.total);
   }
 }
