@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import './server';
+
+console.log('Application initialized');
