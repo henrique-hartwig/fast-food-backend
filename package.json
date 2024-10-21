@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
-    "lint": "eslint --fix ."
+    "lint": "eslint --fix .",
+    "migrate": "bunx prisma migrate dev --schema=./src/infrastructure/database/prisma/schema.prisma"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
