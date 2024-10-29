@@ -31,4 +31,8 @@ export class ProductService {
   async getAllProducts(): Promise<Product[]> {
     return this.productRepository.findAll();
   }
+
+  async deleteProduct(id: number): Promise<void> {
+    await this.productRepository.delete(id);
+  }
 }

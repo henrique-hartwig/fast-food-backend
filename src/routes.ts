@@ -21,6 +21,7 @@ router.get('/products', productController.getAllProducts);
 router.get('/products/:id', productController.getProductById);
 router.get('/products/category/:categoryId', productController.getProductsByCategoryId);
 router.put('/products/:id', productController.updateProduct);
+router.delete('/products/:id', productController.deleteProduct);
 
 const userController = new UserController();
 router.post('/users', userController.createUser);
