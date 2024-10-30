@@ -7,8 +7,8 @@ const userService = new UserService(userRepository);
 export class UserController {
   async createUser(req: any, res: any) {
     const { name, email, cpf } = req.body;
-    await userService.createUser(name, email, cpf);
-    res.status(201).json({ message: 'User created successfully!' });
+    const result = await userService.createUser(name, email, cpf);
+    res.status(result.status).json({ message: result.message });
   }
 
   async getUserByCpf(req: any, res: any) {
