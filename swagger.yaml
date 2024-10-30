@@ -3,7 +3,7 @@ info:
   title: API de Gerenciamento de um Fake Fast-Food
   description: API para gerenciar pedidos, produtos, categorias e usuários
   version: 1.0.0
-  baseUrl: http://localhost:3000
+  baseUrl: http://localhost:3000/api
 
 paths:
   /orders:
