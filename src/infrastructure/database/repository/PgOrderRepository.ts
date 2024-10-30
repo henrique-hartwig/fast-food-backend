@@ -6,7 +6,7 @@ export class PgOrderRepository implements IOrderRepository {
   async save(order: Order): Promise<void> {
     await prisma.order.create({
       data: {
-        items: JSON.stringify(order.items),
+        items: order.items,
         total: order.total,
       },
     });
@@ -21,6 +21,11 @@ export class PgOrderRepository implements IOrderRepository {
       return null;
     }
 
-    return new Order(orderData.id, JSON.parse(orderData.items), orderData.total);
+    return new Order(orderData.id, orderData.items as { id: number; quantity: number }[], orderData.total, orderData.userId ?? undefined);
+  }
+
+  async findAll(): Promise<Order[]> {
+    const ordersData = await prisma.order.findMany();
+    return ordersData.map(order => new Order(order.id, order.items as { id: number; quantity: number }[], order.total, order.userId ?? undefined));
   }
 }

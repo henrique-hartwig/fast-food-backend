@@ -8,6 +8,7 @@ const router = Router();
 const orderController = new OrderController();
 
 router.post('/orders', orderController.createOrder);
+router.get('/orders', orderController.getAllOrders);
 router.get('/orders/:id', orderController.getOrderById);
 
 const productCategoryController = new ProductCategoryController();

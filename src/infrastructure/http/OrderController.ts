@@ -6,8 +6,8 @@ const orderService = new OrderService(orderRepository);
 
 export class OrderController {
   async createOrder(req: any, res: any) {
-    const { items, total } = req.body;
-    await orderService.createOrder(items, total);
+    const { items, total, userId } = req.body;
+    await orderService.createOrder(items, total, userId);
     res.status(201).json({ message: 'Order created successfully!' });
   }
 
@@ -18,5 +18,10 @@ export class OrderController {
     } else {
       res.status(404).json({ message: 'Order not found' });
     }
+  }
+
+  async getAllOrders(req: any, res: any) {
+    const orders = await orderService.getAllOrders();
+    res.json(orders);
   }
 }
