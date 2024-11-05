@@ -1,8 +1,8 @@
 # Fast-Food Backend
-SOAT Tech Challenge 1 - Backend for fake Fast-Food restaurant
+SOAT Tech Challenge 1 - Backend for Fake Fast-Food restaurant
 
 
-This is the first version of the Fast-Food Backend. It is a simplified backend for a fake Fast-Food restaurant that will be a monolitic application and relational Database.
+This is the first version of the Fake Fast-Food Backend. It is a simplified backend for a fake Fast-Food restaurant that will be a monolitic application and relational Database.
 The endpoints are for:
 
 - Create, read, update users
@@ -31,29 +31,31 @@ The endpoints are for:
 
 
 ## Folders structure
-This project aims to use Hexagonal Architecture, so the following folders structure is 
-proposed to implement the mains parts, Ports and Adapters.
+This project aims to use Hexagonal Architecture, so the following folders structure is composed by Ports and Adapters. The Ports work as interfaces/contracts to asure the attributes and methods to interact with other part. The Adapters are the real implementaion of Ports and these Adapters are present in every part of hexagonal architecture.
+It does have that name because is possible have many sides and each side have a proper Adpater.
 
+The example bellow is only using Order as entity, but its the same concept to others.
+```
 src/
 ├── application/
 │   ├── services/
-│   │   └── OrderService.ts         # Lógica de negócio (serviço de pedidos)
+│   │   └── OrderService.ts
 │   └── ports/
-│       └── IOrderRepository.ts     # Interface (Porta) do repositório de pedidos
+│       └── IOrderRepository.ts
 ├── domain/
 │   └── entities/
-│       └── Order.ts                # Entidade de domínio (Pedido)
+│       └── Order.ts
 ├── infrastructure/
 │   ├── database/
 │   │   ├── prisma/
-│   │   │   └── prismaClient.ts     # Cliente do Prisma para Postgres (conexão)
-│   │   └── PostgresOrderRepository.ts # Repositório Postgres (adaptador)
+│   │   │   └── prismaClient.ts
+│   │   ├── repository/
+│   │       └── PgOrderRepository.ts
 │   ├── http/
-│   │   └── OrderController.ts      # Adaptador HTTP (controlador da API)
+│   │   └── OrderController.ts
 │   └── config/
-│       └── config.ts               # Configurações do ambiente (como Postgres)
-├── main.ts                         # Ponto de entrada da aplicação
-├── server.ts                       # Inicializa o servidor HTTP
-├── routes.ts                       # Define as rotas da API
-└── utils/
-    └── errorHandler.ts 
+│       └── config.ts
+├── index.ts
+├── server.ts
+├── routes.ts
+```
