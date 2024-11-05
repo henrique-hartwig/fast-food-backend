@@ -3,6 +3,7 @@ export class Order {
       public id: number,
       public items: { id: number; quantity: number; }[],
       public total: number,
-      public userId?: number
+      public status: 'received' | 'in_preparation' | 'ready' | 'finished',
+      public userId?: number,
     ) {}
   }
